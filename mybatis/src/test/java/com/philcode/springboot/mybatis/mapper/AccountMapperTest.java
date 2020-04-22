@@ -7,10 +7,10 @@ import com.philcode.springboot.mybatis.model.dao.Account;
 import com.philcode.springboot.mybatis.model.dao.AccountExtend;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @SpringBootTest
 public class AccountMapperTest {
 
-    @Autowired
+    @Resource
     private AccountMapper accountMapper;
 
     @Test
@@ -69,11 +69,11 @@ public class AccountMapperTest {
     public void findAll() {
 
         //获取第 1 页，10 条内容，默认查询总数 count
-        PageHelper.startPage(1, 10);
+        PageHelper.startPage(1, 2);
 
         List<Account> accounts = accountMapper.findAll();
 
-        PageInfo<List<Account>> page = new PageInfo(accounts);
+        PageInfo<Account> page = new PageInfo<>(accounts);
 
         System.out.println(JSON.toJSONString(page));
     }

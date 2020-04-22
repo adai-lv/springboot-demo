@@ -16,10 +16,12 @@ spring:
       test-on-borrow: false
     type: org.apache.commons.dbcp2.BasicDataSource
 
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-
 logging:
   level:
-    root: debug
+    root: info
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

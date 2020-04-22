@@ -414,5 +414,3 @@ public interface UserProfileMapper {
 
 创建一个与 `UserProfileMapper.java` 类对应的 XML 文件，里面定义了 `UserProfileMapper.java` 类中定义的 5 个方法的 SQL 实现，
 由于篇幅的原因，完整的 XML 内容可以查看 `mybatis/src/main/resources/mapper/UserProfileMapper.xml`
-
-来源：https://www.ibm.com/developerworks/cn/java/j-spring-boot-integrate-with-mybatis/index.html

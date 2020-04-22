@@ -6,10 +6,10 @@ import com.github.pagehelper.PageInfo;
 import com.philcode.springboot.mybatis.model.dao.UserProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 @SpringBootTest
 public class UserProfileMapperTest {
 
-    @Autowired
+    @Resource
     private UserProfileMapper userProfileMapper;
 
     @Test
@@ -50,11 +50,11 @@ public class UserProfileMapperTest {
     public void findAll() {
 
         //获取第 1 页，10 条内容，默认查询总数 count
-        PageHelper.startPage(1, 10);
+        PageHelper.startPage(1, 5);
 
         List<UserProfile> userProfiles = userProfileMapper.findAll();
 
-        PageInfo<List<UserProfile>> page = new PageInfo(userProfiles);
+        PageInfo<UserProfile> page = new PageInfo<>(userProfiles);
 
         System.out.println(JSON.toJSONString(page));
     }
