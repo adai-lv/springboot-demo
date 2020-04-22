@@ -235,8 +235,8 @@ public SqlSessionFactory dbOneSqlSessionFactory(@Qualifier("dataSource") DataSou
 我们将通过一个具体的场景来讲解如何使用 `MyBatis` 进行数据库操作：定义一个学生实体和班级实体，并创建对应的数据库表，然后使用 `MyBatis` 对其进行增、删、改、查操作。
 
 - 数据库表结构，如清单9如示；
-- 账号类的全路径为 `com.philcode.springboot.mybatis.model.dao.Account`，如清单10如示；
-- 用户档案类的全路径为 `com.philcode.springboot.mybatis.model.dao.UserProfile`，如清单11如示；
+- 账号类的全路径为 `com.philcode.springboot.mybatis.model.entity.Account`，如清单10如示；
+- 用户档案类的全路径为 `com.philcode.springboot.mybatis.model.entity.UserProfile`，如清单11如示；
 
 清单 9. 数据库表结构
 ```sql
@@ -276,7 +276,7 @@ CREATE TABLE `user_profile` (
 
 清单 10. Account 类
 ```
-package com.philcode.springboot.mybatis.model.dao;
+package com.philcode.springboot.mybatis.model.entity;
 
 public class Account {
 
@@ -303,7 +303,7 @@ public class Account {
 
 清单 11. UserProfile 类
 ```
-package com.philcode.springboot.mybatis.model.dao;
+package com.philcode.springboot.mybatis.model.entity;
 
 public class UserProfile {
 
@@ -339,7 +339,7 @@ public class UserProfile {
 ```
 package com.philcode.springboot.mybatis.mapper;
 
-import com.philcode.springboot.mybatis.model.dao.Account;
+import com.philcode.springboot.mybatis.model.entity.Account;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -366,7 +366,7 @@ public interface AccountMapper {
 ```
 <mapper namespace="com.philcode.springboot.mybatis.mapper.AccountMapper">
 
-    <resultMap id="BaseResultMap" type="com.philcode.springboot.mybatis.model.dao.Account">
+    <resultMap id="BaseResultMap" type="com.philcode.springboot.mybatis.model.entity.Account">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
@@ -377,7 +377,7 @@ public interface AccountMapper {
         <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.philcode.springboot.mybatis.model.dao.Account" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.philcode.springboot.mybatis.model.entity.Account" useGeneratedKeys="true" keyProperty="id">
         insert into account(`username`, `password`, `nickname`, `icon`, `status`, `created_at`, `updated_at`)
         values (#{username}, #{password}, #{nickname}, #{icon}, #{status}, #{createdAt}, #{updatedAt})
     </insert>
@@ -395,7 +395,7 @@ public interface AccountMapper {
 ```
 package com.philcode.springboot.mybatis.mapper;
 
-import com.philcode.springboot.mybatis.model.dao.UserProfile;
+import com.philcode.springboot.mybatis.model.entity.UserProfile;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

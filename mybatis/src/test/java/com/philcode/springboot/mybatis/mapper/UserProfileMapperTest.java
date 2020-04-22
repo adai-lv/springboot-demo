@@ -3,7 +3,7 @@ package com.philcode.springboot.mybatis.mapper;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.philcode.springboot.mybatis.model.dao.UserProfile;
+import com.philcode.springboot.mybatis.model.entity.UserProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

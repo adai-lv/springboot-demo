@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.philcode.springboot.mybatis.mapper.AccountMapper">
 
-    <resultMap id="BaseResultMap" type="com.philcode.springboot.mybatis.model.dao.Account">
+    <resultMap id="BaseResultMap" type="com.philcode.springboot.mybatis.model.entity.Account">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
@@ -13,14 +13,14 @@
         <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     </resultMap>
 
-    <resultMap id="AccountExtendMap" type="com.philcode.springboot.mybatis.model.dao.AccountExtend">
+    <resultMap id="AccountExtendMap" type="com.philcode.springboot.mybatis.model.entity.AccountExtend">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="nickname" jdbcType="VARCHAR" property="nickname" />
         <result column="icon" jdbcType="VARCHAR" property="icon" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
         <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-        <collection property="userProfile" ofType="com.philcode.springboot.mybatis.model.dao.UserProfile">
+        <collection property="userProfile" ofType="com.philcode.springboot.mybatis.model.entity.UserProfile">
             <result column="uid" property="id"/>
             <result column="realname" property="realname"/>
             <result column="birtyday" property="birtyday"/>
@@ -28,7 +28,7 @@
         </collection>
     </resultMap>
 
-    <insert id="insert" parameterType="com.philcode.springboot.mybatis.model.dao.Account" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.philcode.springboot.mybatis.model.entity.Account" useGeneratedKeys="true" keyProperty="id">
         insert into account(`username`, `password`, `nickname`, `icon`, `status`, `created_at`, `updated_at`)
         values (#{username}, #{password}, #{nickname}, #{icon}, #{status}, #{createdAt}, #{updatedAt})
     </insert>
@@ -72,5 +72,14 @@
         from account as a left join user_profile as u on a.id = u.account_id
         where a.id = #{id}
     </select>
+
+    <!--
+    开启二级缓存
+    如果应用是分布式部署，由于二级缓存存储在本地，必然导致查询出脏数据，所以分布式部署的应用启用第三方缓存服务（如：redis）。
+
+    多表联查二级缓存，因为两个mapper.xml的作用域不同，要想合到一个作用域，就需要用到cache-ref
+    <cache-ref namespace="package.Mapper"/>
+    -->
+    <cache />
 
 </mapper>

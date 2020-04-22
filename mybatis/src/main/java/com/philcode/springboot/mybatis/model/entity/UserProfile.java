@@ -1,9 +1,12 @@
-package com.philcode.springboot.mybatis.model.dao;
+package com.philcode.springboot.mybatis.model.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class UserProfile {
+public class UserProfile implements Serializable {
+
+    private static final long serialVersionUID = 5577779755464051585L;
 
     /**
      * 代理键

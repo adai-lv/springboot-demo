@@ -1,7 +1,7 @@
 package com.philcode.springboot.mybatis.mapper;
 
-import com.philcode.springboot.mybatis.model.dao.Account;
-import com.philcode.springboot.mybatis.model.dao.AccountExtend;
+import com.philcode.springboot.mybatis.model.entity.Account;
+import com.philcode.springboot.mybatis.model.entity.AccountExtend;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

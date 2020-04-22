@@ -1,6 +1,6 @@
 package com.philcode.springboot.mybatis.mapper;
 
-import com.philcode.springboot.mybatis.model.dao.UserProfile;
+import com.philcode.springboot.mybatis.model.entity.UserProfile;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

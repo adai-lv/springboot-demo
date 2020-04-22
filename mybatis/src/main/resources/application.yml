@@ -19,6 +19,13 @@ spring:
 logging:
   level:
     root: info
+    org:
+      mybatis: debug
+    com:
+      philcode:
+        springboot:
+          mybatis:
+            mapper: debug
 
 pagehelper:
   helper-dialect: mysql

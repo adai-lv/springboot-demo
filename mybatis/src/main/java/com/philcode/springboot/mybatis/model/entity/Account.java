@@ -1,8 +1,11 @@
-package com.philcode.springboot.mybatis.model.dao;
+package com.philcode.springboot.mybatis.model.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Account {
+public class Account implements Serializable {
+
+    private static final long serialVersionUID = -1794197295993453110L;
 
     /**
      * 代理键

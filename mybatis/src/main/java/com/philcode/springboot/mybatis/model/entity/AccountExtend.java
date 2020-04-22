@@ -1,6 +1,10 @@
-package com.philcode.springboot.mybatis.model.dao;
+package com.philcode.springboot.mybatis.model.entity;
 
-public class AccountExtend extends Account {
+import java.io.Serializable;
+
+public class AccountExtend extends Account implements Serializable {
+
+    private static final long serialVersionUID = -7134894362029063218L;
 
     /**
      * 用户档案
