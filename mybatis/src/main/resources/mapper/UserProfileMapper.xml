@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.philcode.springboot.mybatis.mapper.UserProfileMapper">
+
+    <resultMap id="BaseResultMap" type="com.philcode.springboot.mybatis.model.dao.UserProfile">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="account_id" jdbcType="BIGINT" property="accountId" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="birtyday" jdbcType="DATE" property="birtyday" />
+        <result column="gender" jdbcType="VARCHAR" property="gender" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.philcode.springboot.mybatis.model.dao.UserProfile" useGeneratedKeys="true" keyProperty="id">
+        insert into user_profile(`account_id`, `realname`, `birtyday`, `gender`, `created_at`, `updated_at`)
+        values (#{accountId}, #{realname}, #{birtyday}, #{gender}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="updateIgnoreNullById">
+        update user_profile
+        <set>
+            <if test="userProfile.realname != null">realname = #{userProfile.realname, jdbcType=VARCHAR},</if>
+            <if test="userProfile.birtyday != null">birtyday = #{userProfile.birtyday, jdbcType=VARCHAR},</if>
+            <if test="userProfile.gender != null">gender = #{userProfile.gender, jdbcType=VARCHAR},</if>
+            <if test="userProfile.updatedAt != null">updated_at = #{userProfile.updatedAt, jdbcType=TIMESTAMP},</if>
+        </set>
+        where id = #{userProfile.id, jdbcType=BIGINT}
+    </update>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from user_profile where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from user_profile
+    </select>
+</mapper>
